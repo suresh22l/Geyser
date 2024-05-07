@@ -26,6 +26,8 @@
 package org.geysermc.geyser.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.geysermc.geyser.GeyserImpl;
 
@@ -52,7 +54,7 @@ public class WebUtils {
      */
     public static String getBody(String reqURL) {
         try {
-            URL url = new URL(reqURL);
+            URL url = Urls.create(reqURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", getUserAgent()); // Otherwise Java 8 fails on checking updates
@@ -72,7 +74,7 @@ public class WebUtils {
      * @return the response as JSON
      */
     public static JsonNode getJson(String reqURL) throws IOException {
-        HttpURLConnection con = (HttpURLConnection) new URL(reqURL).openConnection();
+        HttpURLConnection con = (HttpURLConnection) Urls.create(reqURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
         con.setRequestProperty("User-Agent", getUserAgent());
         con.setConnectTimeout(10000);
         con.setReadTimeout(10000);
@@ -87,7 +89,7 @@ public class WebUtils {
      */
     public static void downloadFile(String reqURL, String fileLocation) {
         try {
-            HttpURLConnection con = (HttpURLConnection) new URL(reqURL).openConnection();
+            HttpURLConnection con = (HttpURLConnection) Urls.create(reqURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
             con.setRequestProperty("User-Agent", getUserAgent());
             InputStream in = con.getInputStream();
             Files.copy(in, Paths.get(fileLocation), StandardCopyOption.REPLACE_EXISTING);
@@ -105,7 +107,7 @@ public class WebUtils {
      * @throws IOException If the request fails
      */
     public static String post(String reqURL, String postContent) throws IOException {
-        URL url = new URL(reqURL);
+        URL url = Urls.create(reqURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "text/plain");
@@ -160,7 +162,7 @@ public class WebUtils {
      * @throws IOException If the request fails
      */
     public static String postForm(String reqURL, Map<String, String> fields) throws IOException {
-        URL url = new URL(reqURL);
+        URL url = Urls.create(reqURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -210,7 +212,7 @@ public class WebUtils {
      */
     public static Stream<String> getLineStream(String reqURL) {
         try {
-            URL url = new URL(reqURL);
+            URL url = Urls.create(reqURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", getUserAgent()); // Otherwise Java 8 fails on checking updates

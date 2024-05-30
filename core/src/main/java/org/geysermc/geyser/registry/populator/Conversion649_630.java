@@ -49,7 +49,7 @@ public class Conversion649_630 {
 
             final String name = tag.getString("name");
     
-            if (name.equals("minecraft:trial_spawner")) {
+            if ("minecraft:trial_spawner".equals(name)) {
                 NbtMapBuilder builder = tag.toBuilder()
                     .putString("name", "minecraft:mob_spawner")
                     .putCompound("states", NbtMap.EMPTY);

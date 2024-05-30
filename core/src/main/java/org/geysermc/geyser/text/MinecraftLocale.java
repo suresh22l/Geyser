@@ -81,13 +81,13 @@ public class MinecraftLocale {
             return;
         }
 
-        if (locale.equals("nb_no")) {
+        if ("nb_no".equals(locale)) {
             // Different locale code - https://minecraft.wiki/w/Language
             locale = "no_no";
         }
 
         // Check the locale isn't already loaded
-        if (!AssetUtils.isAssetKnown("minecraft/lang/" + locale + ".json") && !locale.equals("en_us")) {
+        if (!AssetUtils.isAssetKnown("minecraft/lang/" + locale + ".json") && !"en_us".equals(locale)) {
             if (loadLocale(locale)) {
                 GeyserImpl.getInstance().getLogger().debug("Loaded locale locally while not being in asset map: " + locale);
             } else {
@@ -110,7 +110,7 @@ public class MinecraftLocale {
      * @param locale Locale to download
      */
     private static void downloadLocale(String locale) {
-        if (locale.equals("en_us")) {
+        if ("en_us".equals(locale)) {
             return;
         }
         Path localeFile = getPath(locale);
@@ -153,7 +153,7 @@ public class MinecraftLocale {
         Path localeFile = getPath(lowercaseLocale);
         Path localeOverride = getPath("overrides/" + lowercaseLocale);
 
-        if (lowercaseLocale.equals("no_no")) {
+        if ("no_no".equals(lowercaseLocale)) {
             // Store this locale under the Bedrock locale, so we don't need to do this check over and over
             lowercaseLocale = "nb_no";
         }

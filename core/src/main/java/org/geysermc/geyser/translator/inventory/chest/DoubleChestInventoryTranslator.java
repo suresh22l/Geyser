@@ -59,7 +59,7 @@ public class DoubleChestInventoryTranslator extends ChestInventoryTranslator {
             int javaBlockId = session.getGeyser().getWorldManager().getBlockAt(session, session.getLastInteractionBlockPosition());
             if (!BlockRegistries.CUSTOM_BLOCK_STATE_OVERRIDES.get().containsKey(javaBlockId)) {
                 String[] javaBlockString = BlockRegistries.JAVA_BLOCKS.getOrDefault(javaBlockId, BlockMapping.DEFAULT).getJavaIdentifier().split("\\[");
-                if (javaBlockString.length > 1 && (javaBlockString[0].equals("minecraft:chest") || javaBlockString[0].equals("minecraft:trapped_chest"))
+                if (javaBlockString.length > 1 && ("minecraft:chest".equals(javaBlockString[0]) || "minecraft:trapped_chest".equals(javaBlockString[0]))
                         && !javaBlockString[1].contains("type=single")) {
                     inventory.setHolderPosition(session.getLastInteractionBlockPosition());
                     ((Container) inventory).setUsingRealBlock(true, javaBlockString[0]);

@@ -148,7 +148,7 @@ public class GeyserCustomBlockComponents implements CustomBlockComponents {
 
     @Override
     public boolean unitCube() {
-        return geometry.identifier().equals("minecraft:geometry.full_block");
+        return "minecraft:geometry.full_block".equals(geometry.identifier());
     }
 
     @Override

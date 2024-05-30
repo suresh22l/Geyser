@@ -282,7 +282,7 @@ public final class ItemTranslator {
         Tag operationTag = modifier.get("Operation");
         ModifierOperation operation;
         if (operationTag == null || (operation = ModifierOperation.from((int) operationTag.getValue())) == ModifierOperation.ADD) {
-            if (name.equals("generic.knockback_resistance")) {
+            if ("generic.knockback_resistance".equals(name)) {
                 amount *= 10;
             }
             operationTotal = ATTRIBUTE_FORMAT.format(amount);

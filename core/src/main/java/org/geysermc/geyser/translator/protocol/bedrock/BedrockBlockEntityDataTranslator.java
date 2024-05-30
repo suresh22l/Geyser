@@ -110,7 +110,7 @@ public class BedrockBlockEntityDataTranslator extends PacketTranslator<BlockEnti
             ServerboundSignUpdatePacket signUpdatePacket = new ServerboundSignUpdatePacket(pos, lines, session.getWorldCache().isEditingSignOnFront());
             session.sendDownstreamGamePacket(signUpdatePacket);
 
-        } else if (id.equals("JigsawBlock")) {
+        } else if ("JigsawBlock".equals(id)) {
             // Client has just sent a jigsaw block update
             Vector3i pos = Vector3i.from(tag.getInt("x"), tag.getInt("y"), tag.getInt("z"));
             String name = tag.getString("name");

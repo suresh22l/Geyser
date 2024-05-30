@@ -90,19 +90,19 @@ public class ConnectionTestCommand extends GeyserCommand {
         String ip = fullAddress[0];
 
         // Issue: people commonly checking placeholders
-        if (ip.equals("ip")) {
+        if ("ip".equals(ip)) {
             sender.sendMessage(ip + " is not a valid IP, and instead a placeholder. Please specify the IP to check.");
             return;
         }
 
         // Issue: checking 0.0.0.0 won't work
-        if (ip.equals("0.0.0.0")) {
+        if ("0.0.0.0".equals(ip)) {
             sender.sendMessage("Please specify the IP that you would connect with. 0.0.0.0 in the config tells Geyser to the listen on the server's IPv4.");
             return;
         }
 
         // Issue: people testing local ip
-        if (ip.equals("localhost") || ip.startsWith("127.") || ip.startsWith("10.") || ip.startsWith("192.168.")) {
+        if ("localhost".equals(ip) || ip.startsWith("127.") || ip.startsWith("10.") || ip.startsWith("192.168.")) {
             sender.sendMessage("This tool checks if connections from other networks are possible, so you cannot check a local IP.");
             return;
         }
@@ -142,7 +142,7 @@ public class ConnectionTestCommand extends GeyserCommand {
         }
 
         // Issue: is the `bedrock` `address` in the config different?
-        if (!config.getBedrock().address().equals("0.0.0.0")) {
+        if (!"0.0.0.0".equals(config.getBedrock().address())) {
             sender.sendMessage("The address specified in `bedrock` `address` is not \"0.0.0.0\" - this may cause issues unless this is deliberate and intentional.");
         }
 

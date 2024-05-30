@@ -161,7 +161,7 @@ public class CooldownUtils {
          * @return The converted CooldownType
          */
         public static CooldownType getByName(String name) {
-            if (name.equalsIgnoreCase("true")) { // Backwards config compatibility
+            if ("true".equalsIgnoreCase(name)) { // Backwards config compatibility
                 return CooldownType.TITLE;
             }
 

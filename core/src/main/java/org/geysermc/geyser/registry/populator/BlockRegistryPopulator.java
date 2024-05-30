@@ -346,7 +346,7 @@ public final class BlockRegistryPopulator {
             // Loop around again to find all item frame runtime IDs
             Object2ObjectMaps.fastForEach(blockStateOrderedMap, entry -> {
                 String name = entry.getKey().getString("name");
-                if (name.equals("minecraft:frame") || name.equals("minecraft:glow_frame")) {
+                if ("minecraft:frame".equals(name) || "minecraft:glow_frame".equals(name)) {
                     itemFrames.put(entry.getKey(), entry.getValue());
                 }
             });
@@ -430,7 +430,7 @@ public final class BlockRegistryPopulator {
                 builder.pickItem(pickItemNode.textValue().intern());
             }
 
-            if (javaId.equals("minecraft:obsidian") || javaId.equals("minecraft:crying_obsidian") || javaId.startsWith("minecraft:respawn_anchor") || javaId.startsWith("minecraft:reinforced_deepslate")) {
+            if ("minecraft:obsidian".equals(javaId) || "minecraft:crying_obsidian".equals(javaId) || javaId.startsWith("minecraft:respawn_anchor") || javaId.startsWith("minecraft:reinforced_deepslate")) {
                 builder.pistonBehavior(PistonBehavior.BLOCK);
             } else {
                 JsonNode pistonBehaviorNode = entry.getValue().get("piston_behavior");
@@ -483,9 +483,9 @@ public final class BlockRegistryPopulator {
 
             } else if ("minecraft:water[level=0]".equals(javaId)) {
                 waterRuntimeId = javaRuntimeId;
-            } else if (javaId.equals("minecraft:honey_block")) {
+            } else if ("minecraft:honey_block".equals(javaId)) {
                 honeyBlockRuntimeId = javaRuntimeId;
-            } else if (javaId.equals("minecraft:slime_block")) {
+            } else if ("minecraft:slime_block".equals(javaId)) {
                 slimeBlockRuntimeId = javaRuntimeId;
             }
         }

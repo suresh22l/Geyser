@@ -63,7 +63,7 @@ public class HelpCommand extends GeyserCommand {
     public void execute(GeyserSession session, GeyserCommandSource sender, String[] args) {
         int page = 1;
         int maxPage = 1;
-        String translationKey = this.baseCommand.equals("geyser") ? "geyser.commands.help.header" : "geyser.commands.extensions.header";
+        String translationKey = "geyser".equals(this.baseCommand) ? "geyser.commands.help.header" : "geyser.commands.extensions.header";
         String header = GeyserLocale.getPlayerLocaleString(translationKey, sender.locale(), page, maxPage);
         sender.sendMessage(header);
 

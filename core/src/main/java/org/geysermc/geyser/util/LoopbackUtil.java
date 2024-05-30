@@ -47,7 +47,7 @@ public final class LoopbackUtil {
      */
     public static boolean needsLoopback(GeyserLogger logger) {
         String os = System.getProperty("os.name");
-        if (os.equalsIgnoreCase("Windows 10") || os.equalsIgnoreCase("Windows 11")) {
+        if ("Windows 10".equalsIgnoreCase(os) || "Windows 11".equalsIgnoreCase(os)) {
             try {
                 Process process = Runtime.getRuntime().exec(checkExemption);
                 InputStream is = process.getInputStream();

@@ -281,7 +281,7 @@ public class GeyserImpl implements GeyserApi {
 
         if (platformType != PlatformType.STANDALONE) {
             int javaPort = bootstrap.getServerPort();
-            if (config.getRemote().address().equals("auto")) {
+            if ("auto".equals(config.getRemote().address())) {
                 config.setAutoconfiguredRemote(true);
                 String serverAddress = bootstrap.getServerBindAddress();
                 if (!serverAddress.isEmpty() && !"0.0.0.0".equals(serverAddress)) {
@@ -367,7 +367,7 @@ public class GeyserImpl implements GeyserApi {
 
         String remoteAddress = config.getRemote().address();
         // Filters whether it is not an IP address or localhost, because otherwise it is not possible to find out an SRV entry.
-        if (!remoteAddress.matches(IP_REGEX) && !remoteAddress.equalsIgnoreCase("localhost")) {
+        if (!remoteAddress.matches(IP_REGEX) && !"localhost".equalsIgnoreCase(remoteAddress)) {
             String[] record = WebUtils.findSrvRecord(this, remoteAddress);
             if (record != null) {
                 int remotePort = Integer.parseInt(record[2]);
@@ -503,7 +503,7 @@ public class GeyserImpl implements GeyserApi {
 
                 int indexOf = javaVersion.lastIndexOf('.');
 
-                if (majorVersion.equals("1")) {
+                if ("1".equals(majorVersion)) {
                     release = "Java " + javaVersion.substring(0, indexOf);
                 } else {
                     // of course, it really wouldn't be all that simple if they didn't add a quirk, now

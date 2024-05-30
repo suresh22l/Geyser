@@ -157,7 +157,7 @@ class Conversion630_622 {
                 .putString("name", replacement)
                 .putCompound("states", NbtMap.builder().putString(typeKey, type).build())
                 .build();
-        } else if (name.contains("tuff") && !name.equals("minecraft:tuff")) {
+        } else if (name.contains("tuff") && !"minecraft:tuff".equals(name)) {
 
             if (name.contains("brick") || name.contains("polished") || name.contains("chiseled")) {
                 replacement = name.replace("tuff", "deepslate");
@@ -205,7 +205,7 @@ class Conversion630_622 {
                 builder.putCompound("states", NbtMap.EMPTY);
             }
             return builder.build();
-        } else if (name.equals("minecraft:crafter")) {
+        } else if ("minecraft:crafter".equals(name)) {
             NbtMapBuilder builder = tag.toBuilder();
             builder.put("name", "minecraft:crafting_table");
             builder.put("states", NbtMap.EMPTY);

@@ -46,7 +46,7 @@ public class Conversion662_649 {
     static GeyserMappingItem remapItem(@SuppressWarnings("unused") Item item, GeyserMappingItem mapping) {
         String identifer = mapping.getBedrockIdentifier();
 
-        if (identifer.equals("minecraft:grass_block")) {
+        if ("minecraft:grass_block".equals(identifer)) {
             return mapping.withBedrockIdentifier("minecraft:grass");
         }
 
@@ -101,7 +101,7 @@ public class Conversion662_649 {
 
         String replacement;
 
-        if (name.equals("minecraft:grass_block")) {
+        if ("minecraft:grass_block".equals(name)) {
             replacement = "minecraft:grass";
 
             NbtMapBuilder builder = tag.toBuilder();

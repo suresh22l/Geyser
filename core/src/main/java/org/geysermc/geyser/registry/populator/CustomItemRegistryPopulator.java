@@ -353,7 +353,7 @@ public class CustomItemRegistryPopulator {
             .build()
         );
 
-        if (toolType.equals("sword")) {
+        if ("sword".equals(toolType)) {
             miningSpeed = 1.5f;
             canDestroyInCreative = false;
         }

@@ -124,7 +124,7 @@ public final class BlockStateValues {
             return;
         }
 
-        if (javaId.startsWith("minecraft:potted_") || javaId.equals("minecraft:flower_pot")) {
+        if (javaId.startsWith("minecraft:potted_") || "minecraft:flower_pot".equals(javaId)) {
             String name = javaId.replace("potted_", "");
             if (name.contains("azalea")) {
                 // Exception to the rule

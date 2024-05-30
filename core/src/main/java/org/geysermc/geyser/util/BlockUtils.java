@@ -60,8 +60,8 @@ public final class BlockUtils {
     }
 
     private static double toolBreakTimeBonus(String toolType, String toolTier, boolean isShearsEffective) {
-        if (toolType.equals("shears")) return isShearsEffective ? 5.0 : 15.0;
-        if (toolType.equals("")) return 1.0;
+        if ("shears".equals(toolType)) return isShearsEffective ? 5.0 : 15.0;
+        if ("".equals(toolType)) return 1.0;
         return switch (toolTier) {
             // https://minecraft.wiki/w/Breaking#Speed
             case "wooden" -> 2.0;
@@ -75,7 +75,7 @@ public final class BlockUtils {
     }
 
     private static boolean canToolTierBreakBlock(GeyserSession session, BlockMapping blockMapping, String toolTier) {
-        if (toolTier.equals("netherite") || toolTier.equals("diamond")) {
+        if ("netherite".equals(toolTier) || "diamond".equals(toolTier)) {
             // As of 1.17, these tiers can mine everything that is mineable
             return true;
         }

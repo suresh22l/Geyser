@@ -303,7 +303,7 @@ public class InventoryUtils {
         // Get the inventory to choose a slot to pick
         PlayerInventory inventory = session.getPlayerInventory();
 
-        if (itemName.equals("minecraft:air")) {
+        if ("minecraft:air".equals(itemName)) {
             return;
         }
 

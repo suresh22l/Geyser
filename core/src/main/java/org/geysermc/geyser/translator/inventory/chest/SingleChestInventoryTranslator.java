@@ -40,7 +40,7 @@ public class SingleChestInventoryTranslator extends ChestInventoryTranslator {
                 "minecraft:ender_chest", "minecraft:trapped_chest") {
             @Override
             protected boolean isValidBlock(String[] javaBlockString) {
-                if (javaBlockString[0].equals("minecraft:ender_chest")) {
+                if ("minecraft:ender_chest".equals(javaBlockString[0])) {
                     // Can't have double ender chests
                     return true;
                 }

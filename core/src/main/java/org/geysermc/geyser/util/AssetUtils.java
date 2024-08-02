@@ -28,6 +28,7 @@ package org.geysermc.geyser.util;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import io.github.pixee.security.BoundedLineReader;
 import lombok.Getter;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.network.GameProtocol;
@@ -144,7 +145,7 @@ public final class AssetUtils {
                 File hashFile = GeyserImpl.getInstance().getBootstrap().getConfigFolder().resolve("cache").resolve(CLIENT_JAR_HASH_FILE).toFile();
                 if (hashFile.exists()) {
                     try (BufferedReader br = new BufferedReader(new FileReader(hashFile))) {
-                        curHash = br.readLine().trim();
+                        curHash = BoundedLineReader.readLine(br, 5_000_000).trim();
                     }
                 }
             } catch (IOException ignored) { }

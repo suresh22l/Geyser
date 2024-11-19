@@ -28,6 +28,8 @@ package org.geysermc.geyser.skin;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import it.unimi.dsi.fastutil.bytes.ByteArrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -509,7 +511,7 @@ public class SkinProvider {
     private static Skin supplyEars(Skin existingSkin, String earsUrl) {
         try {
             // Get the ears texture
-            BufferedImage ears = ImageIO.read(new URL(earsUrl));
+            BufferedImage ears = ImageIO.read(Urls.create(earsUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS));
             if (ears == null) throw new NullPointerException();
 
             // Convert the skin data to a BufferedImage
@@ -673,7 +675,7 @@ public class SkinProvider {
         if (provider == CapeProvider.FIVEZIG) {
             image = readFiveZigCape(imageUrl);
         } else {
-            HttpURLConnection con = (HttpURLConnection) new URL(imageUrl).openConnection();
+            HttpURLConnection con = (HttpURLConnection) Urls.create(imageUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
             con.setRequestProperty("User-Agent", WebUtils.getUserAgent());
             con.setConnectTimeout(10000);
             con.setReadTimeout(10000);

@@ -26,6 +26,7 @@
 package org.geysermc.geyser.command.defaults;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.security.SecureRandom;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.api.util.PlatformType;
@@ -51,7 +52,7 @@ public class ConnectionTestCommand extends GeyserCommand {
 
     private final GeyserImpl geyser;
 
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
 
     public ConnectionTestCommand(GeyserImpl geyser, String name, String description, String permission) {
         super(name, description, permission);

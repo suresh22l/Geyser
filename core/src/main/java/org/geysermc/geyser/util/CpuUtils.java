@@ -25,6 +25,7 @@
 
 package org.geysermc.geyser.util;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -70,7 +71,7 @@ public final class CpuUtils {
         final String cpuNameCmd = "reg query \"HKLM\\HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\" /v ProcessorNameString";
         final String regstrToken = "REG_SZ";
 
-        Process process = Runtime.getRuntime().exec(cpuNameCmd);
+        Process process = SystemCommand.runCommand(Runtime.getRuntime(), cpuNameCmd);
         process.waitFor();
         InputStream is = process.getInputStream();
 

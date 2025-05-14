@@ -26,6 +26,7 @@
 package org.geysermc.geyser.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import io.github.pixee.security.BoundedLineReader;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.geysermc.geyser.GeyserImpl;
 
@@ -140,7 +141,7 @@ public class WebUtils {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream))) {
             String inputLine;
 
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 content.append(inputLine);
                 content.append("\n");
             }
